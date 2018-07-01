@@ -1,0 +1,18 @@
+{
+  "categories" : [ {
+    "name" : "Geografi",
+    "type" : "category",
+    "questions" : "geografi.txt",
+    "subcategories" : [ {
+      "name" : "Hovedstader",
+      "type" : "subcategory",
+      "questions" : "hovedstader.txt",
+      "restriction": "max 1"
+    } ]
+  },
+  {
+    "name" : "Naturvitenskap",
+    "type" : "category",
+    "questions" : "naturvitenskap.txt"
+  }]
+}

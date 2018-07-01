@@ -1,0 +1,95 @@
+Afghanistan              - Kabul
+Albania                  - Tirana
+Argentina                - Buenos Aires
+Australia                - Canberra
+Austria                  - Vienna
+Azerbaijan               - Baku
+The Bahamas              - Nassau
+Bangladesh               - Dhaka
+Belarus                  - Minsk
+Belgium                  - Brussels
+Bosnia and Herzegovina   - Sarajevo
+Botswana                 - Gaborone
+Brazil                   - Brasilia
+Bulgaria                 - Sofia
+Canada                   - Ottawa
+Chile                    - Santiago
+China                    - Beijing
+Colombia                 - Bogota
+Costa Rica               - San Jose
+Croatia                  - Zagreb
+Cuba                     - Havana
+Cyprus                   - Nicosia
+Czech Republic           - Prague
+Denmark                  - Copenhagen
+Ecuador                  - Quito
+Egypt                    - Cairo
+El Salvador              - San Salvador
+Estonia                  - Tallinn
+Ethiopia                 - Addis Ababa
+Finland                  - Helsinki
+France                   - Paris
+Germany                  - Berlin
+Ghana                    - Accra
+Greece                   - Athens
+Honduras                 - Tegucigalpa
+Hungary                  - Budapest
+Iceland                  - Reykjavik
+India                    - New Delhi
+Indonesia                - Jakarta
+Iran                     - Tehran
+Iraq                     - Baghdad
+Ireland                  - Dublin
+Italy                    - Rome
+Japan                    - Tokyo
+Kazakhstan               - Astana
+Kenya                    - Nairobi
+North Korea              - Pyongyang
+South Korea              - Seoul
+Kosovo                   - Pristina
+Latvia                   - Riga
+Lebanon                  - Beirut
+Liechtenstein            - Vaduz
+Lithuania                - Vilnius
+Macedonia                - Skopje
+Malaysia                 - Kuala Lumpur
+Malta                    - Valletta
+Mexico                   - Mexico City
+Moldova                  - Chisinau
+Montenegro               - Podgorica
+Morocco                  - Rabat
+Mozambique               - Maputo
+New Zealand              - Wellington
+Nicaragua                - Managua
+Norway                   - Oslo
+Pakistan                 - Islamabad
+Panama                   - Panama City
+Paraguay                 - Asuncion
+Peru                     - Lima
+Philippines              - Manila
+Poland                   - Warsaw
+Portugal                 - Lisbon
+Romania                  - Bucharest
+Russia                   - Moscow
+Rwanda                   - Kigali
+Serbia                   - Belgrade
+Slovakia                 - Bratislava
+Slovenia                 - Ljubljana
+Somalia                  - Mogadishu
+Spain                    - Madrid
+Sweden                   - Stockholm
+Switzerland              - Bern
+Syria                    - Damascus
+Taiwan                   - Taipei
+Thailand                 - Bangkok
+Turkey                   - Ankara
+Uganda                   - Kampala
+Ukraine                  - Kyiv
+United Kingdom           - London
+United States of America - Washington D.C.
+Uruguay                  - Montevideo
+Venezuela                - Caracas
+Vietnam                  - Hanoi
+Yemen                    - Sanaa
+Zambia                   - Lusaka
+Zimbabwe                 - Harare

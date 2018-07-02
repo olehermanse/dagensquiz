@@ -9,12 +9,12 @@ quizzes = {}
 quiz_data = {}
 
 def read_json(path):
-    with open(path, "r") as f:
+    with open(path, "r", encoding='utf-8') as f:
         d = json.loads(f.read(), object_pairs_hook=OrderedDict)
     return d
 
 def read_questions(path):
-    with open(path, "r") as f:
+    with open(path, "r", encoding='utf-8') as f:
         lines = f.readlines()
     questions = []
     answers = []

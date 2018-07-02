@@ -22,8 +22,6 @@ def read_questions(path):
         q,a = line.split("    - ")
         questions.append(q.strip())
         answers.append(a.strip())
-    print(questions)
-    print(answers)
     return questions, answers
 
 def fill_category(category):
@@ -95,9 +93,7 @@ def get_quiz(quiz_id):
     global quiz_count
     global quiz_data
     if seed in quizzes:
-        print("Cache hit!")
         return quizzes[seed]
-    print("Cache miss!")
 
     r = gen_quiz(seed)
     if quiz_count >= 100:

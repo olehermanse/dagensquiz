@@ -1,5 +1,6 @@
 import argparse
 
+from datetime import date
 
 from flask import Flask, render_template, redirect, abort
 from flask_compress import Compress
@@ -13,7 +14,8 @@ Compress(app)
 # Web server:
 @app.route('/')
 def root():
-    timestamp = "2018-07-01"
+    today = date.today()
+    timestamp = today.strftime('%Y-%m-%d')
     return redirect("/{}".format(timestamp))
 
 

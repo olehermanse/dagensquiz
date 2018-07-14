@@ -1,18 +1,25 @@
 {
-  "categories" : [ {
-    "name" : "Geografi",
-    "type" : "category",
-    "questions" : "geografi.txt",
-    "subcategories" : [ {
-      "name" : "Hovedstader",
-      "type" : "subcategory",
-      "questions" : "hovedstader.txt",
-      "restriction": "max 1"
-    } ]
-  },
-  {
-    "name" : "Naturvitenskap",
-    "type" : "category",
-    "questions" : "naturvitenskap.txt"
-  }]
+  "categories" : [
+    {"name" : "Generelt", "type" : "category", "questions" : "generelt.txt"},
+    {"name" : "Historie", "type" : "category", "questions" : "historie.txt"}, {
+      "name" : "Geografi",
+      "type" : "category",
+      "questions" : "geografi.txt",
+      "subcategories" : [ {
+        "name" : "Hovedstader",
+        "type" : "subcategory",
+        "questions" : "hovedstader.txt"
+      } ]
+    },
+    {
+      "name" : "Naturvitenskap",
+      "type" : "category",
+      "questions" : "naturvitenskap.txt",
+      "subcategories" : [ {
+        "name" : "Kjemi",
+        "type" : "subcategory",
+        "questions" : "kjemi.txt"
+      } ]
+    }
+  ]
 }

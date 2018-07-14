@@ -1,3 +1,7 @@
-Hva er det kjemiske symbolet til Hydrogen?        - H
-Hva er det kjemiske symbolet til Oksygen?         - O
-Hva er det kjemiske symbolet til Karbon?          - C
+Hvem er kjent for å ha oppdaget tyngdekraften?                                         - Isaac Newton
+Hvem oppdaget kalkulus (innen matematikk/fysikk)?                                      - Newton og Leibniz (Uavhengig av hverandre, begge navn er riktig svar)
+I 1971 slipper David Scott en hammer og en fjær på månen. Hva treffer bakken først?    - Hammeren og fjæren treffer bakken samtidig
+Hva betyr atomnummeret til et grunnstoff?                                              - Antall protoner i atomkjernen (og elektroner i bane rundt kjernen)
+Hva betyr nukleontallet til et grunnstoff?                                             - Atomkjernens totale antall protoner og nøytroner
+Hva er isotoper?                                                                       - Variasjoner av samme grunnstoff med forskjellig antall nøytroner i kjernen.
+Hva heter de 6 edelgassene?                                                            - Helium, Neon, Argon, Krypton, Xenon og Radon

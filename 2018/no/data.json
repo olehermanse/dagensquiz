@@ -1,7 +1,8 @@
 {
   "categories" : [
     {"name" : "Generelt", "type" : "category", "questions" : "generelt.txt"},
-    {"name" : "Historie", "type" : "category", "questions" : "historie.txt"}, {
+    {"name" : "Historie", "type" : "category", "questions" : "historie.txt"},
+    {"name" : "Sport", "type" : "category", "questions" : "sport.txt"}, {
       "name" : "Geografi",
       "type" : "category",
       "questions" : "geografi.txt",
@@ -10,15 +11,24 @@
         "type" : "subcategory",
         "questions" : "hovedstader.txt"
       } ]
+    },{
+      "name" : "Underholdning",
+      "type" : "category",
+      "questions" : "underholdning.txt",
+      "subcategories" : [ {
+        "name" : "Spill",
+        "type" : "subcategory",
+        "questions" : "spill.txt"
+      } ]
     },
     {
       "name" : "Naturvitenskap",
       "type" : "category",
       "questions" : "naturvitenskap.txt",
       "subcategories" : [ {
-        "name" : "Kjemi",
+        "name" : "Grunnstoff",
         "type" : "subcategory",
-        "questions" : "kjemi.txt"
+        "questions" : "grunnstoff.txt"
       } ]
     }
   ]

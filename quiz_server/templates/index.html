@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,59 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dagens Quiz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <style type="text/css">
-ol {
-  margin-left: 2em;
-}
-li {
-    margin-bottom: 0.5em;
-}
-.main {
-  padding: 2em;
-  margin: auto;
-  margin-bottom: 2em;
-  max-width: 800px;
-}
-@media (max-width: 600px)
-{
-    .section {
-        padding: 0;
-    }
-    .main {
-      margin-bottom: 0em;
-    }
-}
-  </style>
-</head>
-<body class="has-background-grey-lighter">
-  <section class="section">
-    <div class="main card container has-background-white">
-      <h1 class="title">
-        Dagens Quiz
-      </h1>
-      <h2 class="subtitle">
-        {{ date }}
-      </h2>
-      <ol>
+      ol {
+        margin-left: 2em;
+      }
+      li {
+        margin-bottom: 0.5em;
+      }
+      .main {
+        padding: 2em;
+        margin: auto auto 2em;
+        max-width: 800px;
+      }
+      @media (max-width: 600px) {
+        .section {
+          padding: 0;
+        }
+        .main {
+          margin-bottom: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="has-background-grey-lighter">
+    <section class="section">
+      <div class="main card container has-background-white">
+        <h1 class="title">
+          Dagens Quiz
+        </h1>
+        <h2 class="subtitle">
+          {{ date }}
+        </h2>
+        <ol>
           {% for question in questions %}
             <li>{{ question }}</li>
           {% endfor %}
-      </ol>
-    </div>
-    <div class="main card container has-background-white">
+        </ol>
+      </div>
+      <div class="main card container has-background-white">
         <h1 class="title">
           Dagens Fasit
         </h1>
         <h2 class="subtitle">
           {{ date }}
         </h2>
-      <ol>
+        <ol>
           {% for answer in answers %}
             <li>{{ answer }}</li>
           {% endfor %}
-      </ol>
-    </div>
-  </section>
-</body>
+        </ol>
+      </div>
+    </section>
+  </body>
 </html>

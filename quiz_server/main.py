@@ -1,4 +1,5 @@
 import argparse
+import random
 
 from datetime import date
 
@@ -23,9 +24,14 @@ def root():
 def editor(quiz_id):
     if "favicon.ico" == quiz_id:
         abort(404)
+    if quiz_id == "random":
+        return redirect("/{}".format(random.randint(0,1000)))
     questions, answers = get_quiz(quiz_id)
+    subtitle = quiz_id
+    if "-" not in subtitle:
+        subtitle = "#"+subtitle
     return render_template(
-        'index.html', date=quiz_id, questions=questions, answers=answers)
+        'index.html', date=subtitle, questions=questions, answers=answers)
 
 
 def get_args():

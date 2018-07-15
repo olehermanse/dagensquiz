@@ -18,6 +18,10 @@
         margin: auto auto 2em;
         max-width: 800px;
       }
+      .centered {
+        display: flex;
+        justify-content: center;
+      }
       @media (max-width: 600px) {
         .section {
           padding: 0;
@@ -57,6 +61,11 @@
             <li>{{ answer }}</li>
           {% endfor %}
         </ol>
+      </div>
+      <div class="centered main card container has-background-white">
+        <a href="/random">
+          Mer quiz...
+        </a>
       </div>
     </section>
   </body>

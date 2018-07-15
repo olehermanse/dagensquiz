@@ -13,5 +13,12 @@ def shuffle(lst, seed):
         lst.reverse()
     return list(lst)
 
-def randint(a, b):
-    return (a + b + a*b + a // (b+1)) >> 4
+def randint(a, b, lim=None):
+    r = (a + b + a*b + a // (b+1)) >> 4
+    if lim:
+        r = r % lim
+    return r
+
+def pick(lst, state, n=0):
+    ind = randint(state, n, lim=len(lst))
+    return lst[ind]

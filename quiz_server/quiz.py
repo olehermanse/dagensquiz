@@ -2,7 +2,7 @@ import hashlib
 import json
 from collections import OrderedDict
 
-from quiz_server.randomish import shuffle, randint
+from quiz_server.randomish import shuffle, randint, pick
 
 quiz_count = 0
 quizzes = {}
@@ -49,41 +49,45 @@ def init():
     quiz_data = structure
 
 def pick_question(category, n, seed):
-    categories = [category]
-    if "subcategories" in category:
-        categories.extend(category["subcategories"])
-    ind = (n +  seed) % len(categories)
-    new_cat = categories[ind]
-    if new_cat != category:
-        return pick_question(new_cat, n, seed)
-    category = categories[ind]
     questions = category["questions"]
     if len(questions) == 0:
         return None
-    ind = (2 * n + seed) % len(questions)
-    return questions[ind]
+    return pick(questions, seed, n)
 
+def pretty(data):
+    return json.dumps(data, indent=2)
 
-def gen_quiz(seed):
+def gen_quiz(seed, length=10):
+    state = (length + seed) // 2
     questions = []
     answers = []
+    print(pretty(quiz_data))
     categories = quiz_data["categories"]
-    n = 0
-    while len(questions) < 10 and n < 100:
-        cat_ind = randint(seed, n)
-        cat_ind = cat_ind % len(categories)
-        category = categories[cat_ind]
-        obj = pick_question(category, n, seed)
-        n += 1
-        if obj is None:
-            continue
-        q,a = obj["question"], obj["answer"]
-        if q in questions or a in answers:
-            continue
+    subcategories = []
+    for category in categories:
+        if "subcategories" in category:
+            subcategories.extend(category["subcategories"])
+
+    question_categories = categories + subcategories
+    while len(question_categories) < length:
+        r = randint(seed, state, lim=len(question_categories))
+        category = question_categories[r]
+        question_categories.append(category)
+        state += 1
+    for category in question_categories:
+        q,a = None, None
+        obj = None
+        while q is None or a is None or q in questions or a in answers:
+            obj = pick_question(category, seed, state)
+            if not obj:
+                continue
+            q,a = obj["question"], obj["answer"]
+            state += 1
         questions.append(q)
         answers.append(a)
     qa = zip(questions, answers)
     qa = shuffle(qa, seed)
+    qa = qa[0:length]
     questions, answers = zip(*qa)
     return [questions, answers]
 

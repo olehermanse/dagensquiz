@@ -10,4 +10,4 @@ Hvor mange tenner har et menneske?                                              
 Hvilke grunnstoff består TNT av?                                                       - Karbon, Hydrogen, Nitrogen og Oksygen
 Hva består betong av?                                                                  - Hovedsaklig sement, vann og sand/stein
 Hva er osmose?                                                                         - Diffusjon (spredning) av molekyler gjennom en membran
-Hva er entropi innenfor fysikk?                                                        - Et mål på uorden i et system?
+Hva er entropi innenfor fysikk?                                                        - Et mål på uorden i et system

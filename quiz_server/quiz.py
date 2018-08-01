@@ -1,8 +1,8 @@
-import hashlib
+
 import json
 from collections import OrderedDict
 
-from quiz_server.randomish import shuffle, randint, pick
+from quiz_server.randomish import shuffle, randint, pick, hash
 
 quiz_count = 0
 quizzes = {}
@@ -61,7 +61,6 @@ def gen_quiz(seed, length=10):
     state = (length + seed) // 2
     questions = []
     answers = []
-    print(pretty(quiz_data))
     categories = quiz_data["categories"]
     subcategories = []
     for category in categories:
@@ -70,7 +69,7 @@ def gen_quiz(seed, length=10):
 
     question_categories = categories + subcategories
     while len(question_categories) < length:
-        r = randint(seed, state, lim=len(question_categories))
+        r = randint(0, len(question_categories), [seed, state])
         category = question_categories[r]
         question_categories.append(category)
         state += 1
@@ -106,11 +105,3 @@ def get_quiz(quiz_id):
     quizzes[seed] = r
     quiz_count += 1
     return r
-
-def hash(string):
-    bytes = string.encode('utf-8')
-    hasher = hashlib.sha256()
-    hasher.update(bytes)
-    digest = hasher.digest()
-    num = int.from_bytes(digest[0:4], byteorder='big', signed=False)
-    return num

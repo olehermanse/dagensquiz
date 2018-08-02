@@ -7,86 +7,92 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <style type="text/css">
-      html {
-        height: 100%;
-      }
-      body {
-        min-height: 100%;
-      }
       ol {
-        margin-left: 2em;
+        min-height: 70vh;
+        display: grid;
+        padding-left: 2em;
       }
       li {
-        margin-bottom: 0.5em;
+        margin-bottom: auto;
+        margin-top: auto;
       }
-      @media (min-height: 700px){
-        li {
-          margin-bottom: 1.5em;
-        }
-        @media (min-height: 800px){
-          li {
-            margin-bottom: 2.5em;
-          }
-        }
-      }
-      .section {
-        padding: 2em;
+      body {
+        height: 100%;
       }
       .main {
         padding: 2em;
-        margin: auto auto 2em;
+        margin-bottom: 2em;
         max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .questions-wrapper {
+        min-height: 100vh;
+        display: flex;
+        justify-content: space-between;
+      }
+      .down {
+          text-align: center;
+          font-size: 32px;
+          margin-top: 0.5em;
+      }
+      .questions-wrapper > .main {
+        margin-top: 2em;
       }
       .more {
         display: flex;
         justify-content: center;
-        margin-bottom: 0;
       }
       @media (max-width: 600px) {
-        .section {
-          padding: 0;
-        }
         .main {
           margin-bottom: 0;
+          margin-top: 0;
+        }
+        .questions-wrapper > .main {
+          margin-top: 0;
         }
       }
     </style>
   </head>
-  <body class="has-background-grey-lighter">
-    <section class="section">
+  <body class="bg has-background-grey-lighter">
+    <div class="questions-wrapper">
       <div class="main card container has-background-white">
-        <h1 class="title">
-          <a href="https://dagensquiz.no">
-            Dagens Quiz
-          </a>
-        </h1>
-        <h2 class="subtitle">
-          {{ date }}
-        </h2>
-        <ol>
-          {% for question in questions %}
-            <li>{{ question }}</li>
-          {% endfor %}
-        </ol>
+        <div>
+          <h1 class="title">
+            <a href="https://dagensquiz.no">
+              Dagens Quiz
+            </a>
+          </h1>
+          <h2 class="subtitle">
+            {{ date }}
+          </h2>
+          <ol>
+            {% for question in questions %}
+              <li>{{ question }}</li>
+            {% endfor %}
+          </ol>
+        </div>
+        <div class="down">▼</div>
       </div>
-      <div class="main card container has-background-white">
-        <h1 class="title">
-          Dagens Fasit
-        </h1>
-        <h2 class="subtitle">
-          {{ date }}
-        </h2>
-        <ol>
-          {% for answer in answers %}
-            <li>{{ answer }}</li>
-          {% endfor %}
-        </ol>
-      </div>
-      <div class="more main card container has-background-white">
-        <a href="/random">
-          Mer quiz...
-        </a>
-      </div>
-    </section>
+    </div>
+    <div class="main card container has-background-white">
+      <h1 class="title">
+        Dagens Fasit
+      </h1>
+      <h2 class="subtitle">
+        {{ date }}
+      </h2>
+      <ol>
+        {% for answer in answers %}
+          <li>{{ answer }}</li>
+        {% endfor %}
+      </ol>
+    </div>
+    <div class="more main card container has-background-white">
+      <a href="/random">
+        Mer quiz...
+      </a>
+    </div>
   </body>
 </html>

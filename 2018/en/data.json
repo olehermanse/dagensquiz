@@ -1,0 +1,13 @@
+{
+  "categories" : [
+    {
+      "name" : "Geography",
+      "type" : "category",
+      "subcategories" : [ {
+        "name" : "Capitals",
+        "type" : "subcategory",
+        "questions" : "capitals.txt"
+      } ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dagens Quiz</title>
+    <title>{{ text_title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <style type="text/css">
@@ -33,9 +33,9 @@
         justify-content: space-between;
       }
       .down {
-          text-align: center;
-          font-size: 32px;
-          margin-top: 0.5em;
+        text-align: center;
+        font-size: 32px;
+        margin-top: 0.5em;
       }
       .questions-wrapper > .main {
         margin-top: 2em;
@@ -64,8 +64,8 @@
       <div class="main card container has-background-white">
         <div>
           <h1 class="title">
-            <a href="https://dagensquiz.no">
-              Dagens Quiz
+            <a href="{{ url }}">
+              {{ text_title }}
             </a>
           </h1>
           <h2 class="subtitle">
@@ -77,12 +77,14 @@
             {% endfor %}
           </ol>
         </div>
-        <div class="down"><a href="#fasit">▼</a></div>
+        <div class="down">
+          <a href="#fasit">▼</a>
+        </div>
       </div>
     </div>
     <div id="fasit" class="main card container has-background-white">
       <h1 class="title">
-        Dagens Fasit
+        {{ text_solution }}
       </h1>
       <h2 class="subtitle">
         {{ date }}
@@ -95,7 +97,7 @@
     </div>
     <div class="more main card container has-background-white">
       <a href="/random">
-        Mer quiz...
+        {{ text_more }}
       </a>
     </div>
   </body>

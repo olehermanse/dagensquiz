@@ -1,9 +1,17 @@
 Hva heter den første pokémon-skapningen som ble laget (til spillene Pokémon Red, Blue, Green, Yellow)?    - Rhydon
-I Pokémon Red, hva heter den første pokémonen i spillets oppslagsliste (pokedex)?                         - Bulbasaur
-Nevn to (av tre) Pokémon fra Pokémon Yellow som har dragetype?                                            - Dratini, Dragonair, Dragonite
+I Pokémon spillene til Gameboy, hva heter den første pokémonen i spillets oppslagsliste (pokedex)?        - Bulbasaur
 Hva heter det fjerde spillet i Blizzard Entertainments Warcraft-univers?                                  - World of Warcraft
 Hva er en "Flush" i poker?                                                                                - Alle (5) kort i samme sort
 Hva heter den menneskelige hovedpersonen i Starcraft-spillene?                                            - Jim Raynor (James Eugene Raynor)
+Hvilken dataspillsjanger hører Command & Conquer, Starcraft og Warcraft spillene til?                     - Strategispill (RTS)
 I hvilket dataspill er Dr. Gordon Freeman hovedkarakter?                                                  - Half Life
 Hva heter utvikleren bak dataspillene Counter Strike og Half Life?                                        - Valve
+Hvilken dataspillsjanger hører Counter Strike og Call of Duty til?                                        - Skytespill (FPS)
 Hva kalles tre-på-rad i Storbrittania og USA?                                                             - Tic Tac Toe (USA) og Noughts and Crosses (Storbrittania)
+Hva er yrket til Super Mario?                                                                             - Rørlegger
+Hva heter hovedpersonen i Zelda-spillene?                                                                 - Link
+Hva heter prinsessen man prøver å redde i mange av Zelda-spillene?                                        - Zelda
+Hva heter hovedkarakteren i Halo-spillene?                                                                - Master Chief
+RTS er en sjanger innen dataspill. Hva står forkortelsen for?                                             - Real Time Strategy
+FPS er en sjanger innen dataspill. Hva står forkortelsen for?                                             - First Person Shooter
+Hva heter spilldesigneren som er kjent for Civilization Spilene?                                          - Sid Meier (Sid Meier's Civilization)

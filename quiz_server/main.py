@@ -29,6 +29,8 @@ ENGLISH = {
 }
 
 LANG = NORWEGIAN
+print("ENV:")
+print(str(os.environ))
 
 if "ENGLISH_QUIZ" in os.environ and os.environ["ENGLISH_QUIZ"] == "1":
     LANG = ENGLISH

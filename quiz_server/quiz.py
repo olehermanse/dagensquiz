@@ -52,6 +52,7 @@ def init(lang):
         fill_category(cat, lang)
     global quiz_data
     quiz_data = structure
+    assert quiz_data
 
 
 def pick_question(category, n, seed):

@@ -10,6 +10,7 @@
     "ENV NODE_ENV production",
     "ENV PORT 80",
     "EXPOSE 80",
-    "CMD [\"python3\", \"quiz_server\", \"--release\", \"--port\", \"80\", \"--ip\", \"0.0.0.0\"]"
+    "CMD [\"gunicorn\", \"-b\", \"0.0.0.0:80\", \"run:app\"]"
   ]
 }
+gunicorn -b 127.0.0.1:8000 run:app

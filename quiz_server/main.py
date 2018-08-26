@@ -79,8 +79,9 @@ def get_args():
     return args
 
 
-def start_server(ip, port):
-    app.run(ip, port=port)
+def initialize():
+    global LANG
+    init(lang=LANG["id"])
 
 
 def main():
@@ -92,8 +93,8 @@ def main():
         app.config['DEBUG'] = True
         app.config['TEMPLATES_AUTO_RELOAD'] = True
     global LANG
-    init(lang=LANG["id"])
-    start_server(args.ip, args.port)
+    initialize()
+    app.run(args.ip, port=args.port)
 
 
 if __name__ == "__main__":

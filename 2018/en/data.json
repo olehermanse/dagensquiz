@@ -3,6 +3,7 @@
     {
       "name" : "Geography",
       "type" : "category",
+      "questions": "geography.txt",
       "subcategories" : [ {
         "name" : "Capitals",
         "type" : "subcategory",

@@ -8,6 +8,15 @@
         "type" : "subcategory",
         "questions" : "capitals.txt"
       } ]
+    },
+    {
+      "name" : "Science",
+      "type" : "category",
+      "subcategories" : [ {
+        "name" : "Chemical elements",
+        "type" : "subcategory",
+        "questions" : "elements.txt"
+      } ]
     }
   ]
 }

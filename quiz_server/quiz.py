@@ -67,7 +67,6 @@ def pretty(data):
 
 
 def gen_quiz(seed, length=10):
-    state = (length + seed) // 2
     questions = []
     answers = []
     categories = quiz_data["categories"]
@@ -76,27 +75,32 @@ def gen_quiz(seed, length=10):
         if "subcategories" in category:
             subcategories.extend(category["subcategories"])
 
-    question_categories = categories + subcategories
-    while len(question_categories) < length:
-        r = randint(0, len(question_categories), [seed, state])
-        category = question_categories[r]
-        question_categories.append(category)
-        state += 1
-    for category in question_categories:
-        if "questions" not in category:
-            continue
+    categories = categories + subcategories
+    categories = filter(lambda x: "questions" in x, categories)
+    categories = list(categories)
+    categories = shuffle(categories, seed)
+    while len(categories) < length:
+        categories += categories
+    categories = categories[0:length]
+
+    assert len(categories) == length
+
+    state = length + seed + 1
+    for category in categories:
         q, a = None, None
-        obj = None
-        while q is None or a is None or q in questions or a in answers:
+        for _ in range(5):
             obj = pick_question(category, seed, state)
+            state += 1
             if not obj:
                 continue
             q, a = obj["question"], obj["answer"]
-            state += 1
-        questions.append(q)
-        answers.append(a)
+            if q in questions or a in answers:
+                continue
+            questions.append(q)
+            answers.append(a)
+            break
     qa = zip(questions, answers)
-    qa = shuffle(qa, seed)
+    qa = shuffle(qa, state)
     qa = qa[0:length]
     questions, answers = zip(*qa)
     return [questions, answers]

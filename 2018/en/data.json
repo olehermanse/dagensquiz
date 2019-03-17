@@ -18,6 +18,7 @@
     {
       "name" : "Science",
       "type" : "category",
+      "questions": "science.txt",
       "subcategories" : [ {
         "name" : "Chemical elements",
         "type" : "subcategory",

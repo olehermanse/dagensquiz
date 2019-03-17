@@ -1,13 +1,3 @@
 Who is famous for discovering the gravitational force?                                          - Isaac Newton
 Who discovered Calculus?                                                                        - Isaac Newton and Gottfried Leibniz (Independently)
 In 1971 David Scott drops a hammer and a feather on the moon. Which hits the surface first?     - Hammeren og fjæren treffer bakken samtidig
-Hva betyr atomnummeret til et grunnstoff?                                                       - Antall protoner i atomkjernen (og elektroner i bane rundt kjernen)
-Hva betyr nukleontallet til et grunnstoff?                                                      - Atomkjernens totale antall protoner og nøytroner
-Hva er isotoper?                                                                                - Variasjoner av samme grunnstoff med forskjellig antall nøytroner i kjernen.
-Hva heter de 6 edelgassene?                                                                     - Helium, Neon, Argon, Krypton, Xenon og Radon
-Hva er Femur (i kroppen)?                                                                       - Lårben
-Hvor mange tenner har et menneske?                                                              - 32
-Hvilke grunnstoff består TNT av?                                                                - Karbon, Hydrogen, Nitrogen og Oksygen
-Hva består betong av?                                                                           - Hovedsaklig sement, vann og sand/stein
-Hva er osmose?                                                                                  - Diffusjon (spredning) av molekyler gjennom en membran
-Hva er entropi innenfor fysikk?                                                                 - Et mål på uorden i et system

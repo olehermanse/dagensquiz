@@ -1,62 +1,50 @@
+import os
 import json
 from collections import OrderedDict
 
 from quiz_server.randomish import shuffle, randint, pick, hash
 
-quiz_count = 0
-quizzes = {}
-quiz_data = {}
-
 
 def read_json(path):
     with open(path, "r", encoding='utf-8') as f:
-        d = json.loads(f.read(), object_pairs_hook=OrderedDict)
-    return d
+        return json.loads(f.read(), object_pairs_hook=OrderedDict)
+
+
+def write_json(data, path):
+    with open(path, "w", encoding='utf-8') as f:
+        f.write(pretty(data))
 
 
 def read_questions(path):
     with open(path, "r", encoding='utf-8') as f:
         lines = f.readlines()
     questions = []
-    answers = []
     for line in lines:
-        q, a = line.split("    - ")
-        questions.append(q.strip())
-        answers.append(a.strip())
-    return questions, answers
+        q, a = line.split("  - ")
+        questions.append([q.strip(), a.strip()])
+    return questions
 
 
-def fill_category(category, lang):
-    if "questions" in category:
-        filename = category["questions"]
-        assert type(filename) is str
-        questions, answers = read_questions("2018/{}/{}".format(
-            lang, filename))
-        category["questions"] = []
-        for q, a in zip(questions, answers):
-            obj = {}
-            obj["question"] = q
-            obj["answer"] = a
-            category["questions"].append(obj)
+def init():
+    data = OrderedDict()
+    languages = ["en", "no"]
+    for l in languages:
+        data[l] = OrderedDict()
+        categories = data[l]["categories"] = OrderedDict()
+        files = os.listdir("2018/{}/".format(l))
+        files.sort()
+        question_files = list(filter(lambda x: x.endswith(".txt"), files))
+        for file in question_files:
+            categories[file] = read_questions("2018/{}/{}".format(l, file))
 
-    if "subcategories" in category:
-        subcategories = category["subcategories"]
-        for sub in subcategories:
-            fill_category(sub, lang)
+    write_json(data, "output.json")
 
-
-def init(lang):
-    structure = read_json("2018/{}/data.json".format(lang))
-    categories = structure["categories"]
-    for cat in categories:
-        fill_category(cat, lang)
     global quiz_data
-    quiz_data = structure
+    quiz_data = data
     assert quiz_data
 
 
-def pick_question(category, n, seed):
-    questions = category["questions"]
+def pick_question(questions, n, seed):
     if len(questions) == 0:
         return None
     return pick(questions, seed, n)
@@ -66,34 +54,32 @@ def pretty(data):
     return json.dumps(data, indent=2)
 
 
-def gen_quiz(seed, length=10):
+def gen_quiz(seed, language, length=10):
     questions = []
     answers = []
-    categories = quiz_data["categories"]
-    subcategories = []
-    for category in categories:
-        if "subcategories" in category:
-            subcategories.extend(category["subcategories"])
+    categories = quiz_data[language]["categories"]
 
-    categories = categories + subcategories
-    categories = filter(lambda x: "questions" in x, categories)
+    categories = [x for x in categories]
     categories = list(categories)
     categories = shuffle(categories, seed)
     while len(categories) < length:
         categories += categories
     categories = categories[0:length]
+    categories = categories[0:length // 2] + shuffle(categories[length // 2:],
+                                                     seed)
 
     assert len(categories) == length
 
     state = length + seed + 1
     for category in categories:
         q, a = None, None
+        category = quiz_data[language]["categories"][category]
         for _ in range(5):
             obj = pick_question(category, seed, state)
             state += 1
             if not obj:
                 continue
-            q, a = obj["question"], obj["answer"]
+            q, a = obj
             if q in questions or a in answers:
                 continue
             questions.append(q)
@@ -106,18 +92,6 @@ def gen_quiz(seed, length=10):
     return [questions, answers]
 
 
-def get_quiz(quiz_id):
+def get_quiz(quiz_id, language):
     seed = hash(quiz_id)
-    global quizzes
-    global quiz_count
-    global quiz_data
-    if seed in quizzes:
-        return quizzes[seed]
-
-    r = gen_quiz(seed)
-    if quiz_count >= 100:
-        quizzes = {}
-        quiz_count = 0
-    quizzes[seed] = r
-    quiz_count += 1
-    return r
+    return gen_quiz(seed, language)

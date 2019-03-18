@@ -1,6 +1,6 @@
-from quiz_server.main import app, initialize, main
+from quiz_server.main import app, init, main
 
-initialize()
+init()
 
 if __name__ == "__main__":
     main()

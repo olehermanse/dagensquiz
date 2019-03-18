@@ -41,7 +41,7 @@ def root():
 @app.route('/<string:quiz_id>', methods=["GET"])
 def editor(quiz_id):
     lang = NORWEGIAN
-    if "dailyquiz.app" in flask.request.headers['Host']:
+    if "dailyquiz" in flask.request.headers['Host']:
         lang = ENGLISH
     if "favicon.ico" == quiz_id:
         abort(404)
@@ -68,23 +68,11 @@ def get_args():
         '--ip', '-i', help='IP', type=str, default="0.0.0.0")
     argparser.add_argument(
         '--port', '-p', help='port number', type=int, default=5000)
-    argparser.add_argument(
-        '--release', '-r', help='Release mode', action="store_true")
     args = argparser.parse_args()
     return args
 
 
 def main():
     args = get_args()
-    if args.release:
-        pass
-    else:
-        app.config['SERVER_NAME'] = "127.0.0.1:5000"
-        app.config['DEBUG'] = True
-        app.config['TEMPLATES_AUTO_RELOAD'] = True
     init()
     app.run(args.ip, port=args.port)
-
-
-if __name__ == "__main__":
-    raise AssertionError

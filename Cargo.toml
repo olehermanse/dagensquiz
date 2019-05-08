@@ -1,0 +1,9 @@
+[package]
+name = "dagensquiz"
+version = "0.1.0"
+authors = ["Ole Herman Schumacher Elgesem <oleherman93@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+rocket = "0.4.0"
+serde_json = "1.0"

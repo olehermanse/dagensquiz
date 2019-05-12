@@ -1,12 +1,7 @@
-FROM rust:1.28
-
-ENV ROCKET_ADDRESS=0.0.0.0
-ENV ROCKET_PORT=80
-
+FROM rust:1.34
 WORKDIR /dagensquiz
 COPY . .
-
+ENV ROCKET_ENV prod
 RUN rustup default nightly
-RUN cargo build
-
+RUN cargo build --color never --release
 CMD ["cargo", "run"]

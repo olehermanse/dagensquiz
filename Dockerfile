@@ -1,7 +1,12 @@
-FROM python:3-alpine
+FROM rust:1.28
+
+ENV ROCKET_ADDRESS=0.0.0.0
+ENV ROCKET_PORT=80
+
 WORKDIR /dagensquiz
-ADD ./ /dagensquiz
-RUN pip3 install -r requirements.txt
-ENV PORT 80
-EXPOSE 80
-CMD ["gunicorn", "-b", "0.0.0.0:80", "run:app"]
+COPY . .
+
+RUN rustup default nightly
+RUN cargo build
+
+CMD ["cargo", "run"]

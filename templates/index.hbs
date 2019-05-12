@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ text_title }}</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <style type="text/css">
@@ -65,16 +65,16 @@
         <div>
           <h1 class="title">
             <a href="{{ url }}">
-              {{ text_title }}
+              {{ title }}
             </a>
           </h1>
           <h2 class="subtitle">
             {{ date }}
           </h2>
           <ol>
-            {% for question in questions %}
-              <li>{{ question }}</li>
-            {% endfor %}
+            {{#each questions}}
+              <li>{{ this }}</li>
+            {{/each}}
           </ol>
         </div>
         <div class="down">
@@ -84,20 +84,20 @@
     </div>
     <div id="fasit" class="main card container has-background-white">
       <h1 class="title">
-        {{ text_solution }}
+        {{ solution }}
       </h1>
       <h2 class="subtitle">
         {{ date }}
       </h2>
       <ol>
-        {% for answer in answers %}
-          <li>{{ answer }}</li>
-        {% endfor %}
+        {{#each answers}}
+          <li>{{ this }}</li>
+        {{/each}}
       </ol>
     </div>
     <div class="more main card container has-background-white">
-      <a href="/random">
-        {{ text_more }}
+      <a href="{{url}}random">
+        {{ more }}
       </a>
     </div>
   </body>

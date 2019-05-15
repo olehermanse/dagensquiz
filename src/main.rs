@@ -6,31 +6,38 @@ extern crate serde_json;
 extern crate rocket_contrib;
 extern crate rand;
 extern crate chrono;
+extern crate crypto;
+
+use std::collections::HashMap;
+use std::error::Error;
+use std::fs::{self, File};
+use std::io::{BufReader, BufRead};
 
 use rocket::{State, Request};
 use rocket::request::{FromRequest, Outcome};
 use rocket::response::Redirect;
 use rocket_contrib::templates::Template;
 
-use std::collections::HashMap;
-use std::error::Error;
-use std::fs::{self, File};
-use std::io::{BufReader, BufRead};
+use self::crypto::digest::Digest;
+use self::crypto::sha2::Sha256;
 use rand::Rng;
 use chrono::{DateTime, Utc};
 
 fn randint(seed: &str) -> usize {
-    let mut c : usize = 3;
-    let mut s : usize = 0;
-    for p in seed.as_bytes() {
-        let p: usize = (*p).into();
-        s += (c * p) + c + p;
-        c += 1;
+    let mut hasher = Sha256::new();
+    hasher.input_str(seed);
+    let mut bytes: [u8; 32] = [0; 32];
+    hasher.result(&mut bytes);
+    let mut result : usize = 0;
+    for i in 0..8 {
+        result = result << 8;
+        result += bytes[i] as usize;
     }
-    return s / 4;
+    return result;
 }
 
 fn randint_range(seed: &str, min: usize, max: usize) -> usize {
+    assert!(min <= max);
     let r = randint(seed);
     let diff = max - min;
     let r = r % (diff + 1);

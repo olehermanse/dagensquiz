@@ -211,14 +211,14 @@ fn quiz(seed: &str, data: &QuizData, language: &str) -> Quiz {
 }
 
 #[derive(Serialize)]
-struct TemplateContext {
+struct TemplateContext <'a> {
     title: &'static str,
     solution: &'static str,
     more: &'static str,
     date: String,
     url: &'static str,
-    questions: Vec<String>,
-    answers: Vec<String>,
+    questions: Vec<&'a str>,
+    answers: Vec<&'a str>,
 }
 
 fn templated_quiz(
@@ -233,11 +233,11 @@ fn templated_quiz(
         true => {seed}
         false => {format!("#{}", seed)}
     };
-    let mut questions: Vec<String> = vec![];
-    let mut answers: Vec<String> = vec![];
-    for question in quiz.questions {
-        questions.push(question.question);
-        answers.push(question.answer);
+    let mut questions: Vec<&str> = vec![];
+    let mut answers: Vec<&str> = vec![];
+    for question in &quiz.questions {
+        questions.push(&question.question);
+        answers.push(&question.answer);
     }
     let context = TemplateContext {
         title: title,

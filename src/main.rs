@@ -57,9 +57,13 @@ impl<'a, 'r> FromRequest<'a, 'r> for HostHeader<'a> {
     }
 }
 
+struct Question {
+    question: String,
+    answer: String,
+}
+
 struct Quiz {
-    questions: Vec<String>,
-    answers: Vec<String>,
+    questions: Vec<Question>,
 }
 
 struct LocalizedQuizData {
@@ -72,7 +76,7 @@ struct QuizData {
 
 impl Quiz {
     fn read_file(path: &std::path::Path) -> Result<Quiz, Box<Error>> {
-        let mut quiz : Quiz = Quiz { questions : vec![], answers : vec![] };
+        let mut quiz : Quiz = Quiz { questions : vec![] };
         let file = File::open(path)?;
         for line in BufReader::new(file).lines() {
             let line : String = String::from(line?);
@@ -80,8 +84,8 @@ impl Quiz {
             if v.len() == 2 {
                 let q = String::from(v[0].trim());
                 let a = String::from(v[1].trim());
-                quiz.questions.push(q);
-                quiz.answers.push(a);
+                let question = Question {question: q, answer: a};
+                quiz.questions.push(question);
             } else {
                 println!("Skipping bad line: {}", line);
             }
@@ -154,7 +158,7 @@ fn init_quiz(path: &str) -> Result<QuizData, Box<Error>> {
 fn quiz(seed: &str, data: &QuizData, language: &str) -> Quiz {
     let mut counter = 0;
     let categories = &data.languages[language].categories;
-    let mut quiz = Quiz {questions: vec![], answers: vec![]};
+    let mut quiz = Quiz {questions: vec![]};
     for _ in 0..2 {
         for category in categories {
             if quiz.questions.len() >= 10 {
@@ -166,10 +170,10 @@ fn quiz(seed: &str, data: &QuizData, language: &str) -> Quiz {
             let length = category.questions.len();
             let max = length - 1;
             let index = randint_range(&tmp_seed, 0, max);
-            let question: String = category.questions[index].clone();
-            let answer: String = category.answers[index].clone();
+            let question: String = category.questions[index].question.clone();
+            let answer: String = category.questions[index].answer.clone();
+            let question = Question { question: question, answer: answer };
             quiz.questions.push(question);
-            quiz.answers.push(answer);
         }
     }
     let max = quiz.questions.len() - 1;
@@ -178,7 +182,6 @@ fn quiz(seed: &str, data: &QuizData, language: &str) -> Quiz {
         counter += 1;
         let index = randint_range(&tmp_seed, 1, max);
         quiz.questions.swap(0, index);
-        quiz.answers.swap(0, index);
     }
     return quiz;
 }
@@ -206,14 +209,20 @@ fn templated_quiz(
         true => {seed}
         false => {format!("#{}", seed)}
     };
+    let mut questions: Vec<String> = vec![];
+    let mut answers: Vec<String> = vec![];
+    for question in quiz.questions {
+        questions.push(question.question);
+        answers.push(question.answer);
+    }
     let context = TemplateContext {
         title: title,
         solution: solution,
         more: more,
         date: date,
         url: root,
-        questions: quiz.questions,
-        answers: quiz.answers,
+        questions: questions,
+        answers: answers,
     };
     return Template::render("index", &context);
 }

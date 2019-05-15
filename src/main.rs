@@ -9,6 +9,7 @@ extern crate chrono;
 extern crate crypto;
 
 use std::collections::HashMap;
+use std::iter::FromIterator;
 use std::error::Error;
 use std::fs::{self, File};
 use std::io::{BufReader, BufRead};
@@ -45,6 +46,21 @@ fn randint_range(seed: &str, min: usize, max: usize) -> usize {
     return r;
 }
 
+fn shuffle<T>(seed: &str, elements: &mut Vec<T>)
+{
+    let len = elements.len();
+    if len <= 1 {
+        return;
+    }
+    let max = len - 1;
+    for i in 0..20 {
+        let seed_a = format!("{}_{}_a", seed, i);
+        let seed_b = format!("{}_{}_b", seed, i);
+        let (a, b) = (randint_range(&seed_a, 0, max), randint_range(&seed_b, 0, max));
+        elements.swap(a,b);
+    }
+}
+
 pub struct HostHeader<'a>(pub &'a str);
 
 impl<'a, 'r> FromRequest<'a, 'r> for HostHeader<'a> {
@@ -57,6 +73,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for HostHeader<'a> {
     }
 }
 
+#[derive(Clone)]
 struct Question {
     question: String,
     answer: String,
@@ -91,6 +108,15 @@ impl Quiz {
             }
         }
         return Ok(quiz);
+    }
+
+    fn contains(& self, question: &Question) -> bool {
+        for q in &self.questions {
+            if q.question == question.question {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
@@ -136,7 +162,6 @@ impl QuizData {
             }
         };
         let key = String::from(key);
-        println!("Adding language directory: {}", key);
         self.languages.insert(key, value);
     }
 }
@@ -156,33 +181,32 @@ fn init_quiz(path: &str) -> Result<QuizData, Box<Error>> {
 }
 
 fn quiz(seed: &str, data: &QuizData, language: &str) -> Quiz {
-    let mut counter = 0;
-    let categories = &data.languages[language].categories;
     let mut quiz = Quiz {questions: vec![]};
+
+    let categories = &data.languages[language].categories;
+    let mut keys: Vec<&String> = Vec::from_iter(categories.keys());
+    keys.sort_unstable();
+    shuffle(seed, &mut keys);
+
+    let mut counter = 0;
     for _ in 0..2 {
-        for category in categories {
+        for key in &keys {
             if quiz.questions.len() >= 10 {
                 break;
             }
-            let category = category.1;
+            let category = &categories[*key];
             let tmp_seed = format!("{}_{}", seed, counter);
             counter += 1;
             let length = category.questions.len();
             let max = length - 1;
             let index = randint_range(&tmp_seed, 0, max);
-            let question: String = category.questions[index].question.clone();
-            let answer: String = category.questions[index].answer.clone();
-            let question = Question { question: question, answer: answer };
-            quiz.questions.push(question);
+            let question = &category.questions[index];
+            if ! quiz.contains(question) {
+                quiz.questions.push(question.clone());
+            }
         }
     }
-    let max = quiz.questions.len() - 1;
-    for _ in 0..20 {
-        let tmp_seed = format!("{}_{}", seed, counter);
-        counter += 1;
-        let index = randint_range(&tmp_seed, 1, max);
-        quiz.questions.swap(0, index);
-    }
+    shuffle(seed, &mut quiz.questions);
     return quiz;
 }
 

@@ -103,7 +103,7 @@ impl Quiz {
                 let a = String::from(v[1].trim());
                 let question = Question {question: q, answer: a};
                 quiz.questions.push(question);
-            } else {
+            } else if line.trim() != "" {
                 println!("Skipping bad line: {}", line);
             }
         }

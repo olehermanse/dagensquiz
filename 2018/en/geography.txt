@@ -1,7 +1,25 @@
 Which landmass has the biggest area: North America, South America, Africa or Russia?    - Africa
 What is the world's biggest country (by area)?                                          - Russia
-How many states constitute the United States of America?                                - 50
+What is the world's smallest country (by area)?                                         - Vatican City
 How tall is Mt. Everest, the world's tallest mountain?                                  - 8,848 m (29,029 ft)
 What country are you in, if you're standing on top of Mt. Everest in the Himalayas?     - The border between China(Tibet) and Nepal
 What is the world's longest river?                                                      - The Nile or the Amazon river (depending on how you measure)
 What is the world's biggest fresh water lake (by area)?                                 - Lake Superior, between USA and Canada
+What is Constantinople called today?                                                    - Istanbul
+
+How many states constitute the United States of America?                                - 50
+What are the names of the countries in North America?                                   - USA and Canada
+What is the name of the tallest mountain in the USA?                                    - Denali (Alaska)
+What is the name of the tallest mountain in Canada?                                     - Mount Logan
+What is the most populous city in the US?                                               - New York City
+In what US state is New York City?                                                      - New York
+In what US state is Washington, D.C.?                                                   - None. Washington D.C, is located between Maryland and Virginia, but does not belong to any state.
+What is D.C. short for, in Washington, D.C.?                                            - District of Columbia
+What is the biggest city in Washington?                                                 - Seattle
+
+What is the name of the biggest forest in Brazil?                                       - The Amazon Rainforest
+What country in South America has the biggest population?                               - Brazil
+What country is the fifth biggest in the world (both by population and area)?           - Brazil
+What is the most populous city in Brazil?                                               - São Paulo
+What are the names of the countries in Central America?                                 - Mexico, Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panama, Cuba, Haiti, The Dominican Republic
+What is the tallest mountain in South America?                                          - Aconcagua, Argentina (Andes-fjellene)

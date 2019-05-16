@@ -1,17 +1,28 @@
 Hvilket landområde er størst: Nord-Amerika, Sør-Amerika, Afrika eller Russland?      - Afrika
 Hva er verdens største land, i areal?                                                - Russland
-Hvor mange stater er det i De Forente Stater (USA)?                                  - 50
+Hva er verdens minste land (i areal)?                                                - Vatikanstaten
 Hvor høy er Mt. Everest, verdens høyeste fjell?                                      - 8 848m
-Hvor høy er Galdhøpiggen, Norges høyeste fjell?                                      - 2 469m
 Hvilket land er du i, hvis du står på toppen av Mt. Everest i Himalayafjellene?      - Grensen mellom Kina og Nepal
 Hva er verdens lengste elv?                                                          - Nilen eller Amazonas-elva (det avhenger av hvem og hvordan det måles)
 Hva er verdens største ferskvannsinnsjø? (Målt i areal)                              - Lake Superior, mellom USA og Canada
-Hva heter Norges nasjonalfjell?                                                      - Stetinden (I Tysfjord kommune, Nordland fylke)
+Hva heter Konstantinopel i dag?                                                      - Istanbul
+
+Hvor mange stater er det i De Forente Stater (USA)?                                  - 50
+Hva heter landene i Nord-Amerika?                                                    - Canada og USA
+Hva heter det høyeste fjellet i USA?                                                 - Denali (Alaska)
+Hva heter det høyeste fjellet i Canada?                                              - Mount Logan
+Hvilken by i USA har flest innbyggere?                                               - New York City
+I hvilken amerikansk delstat ligger New York City?                                   - New York
+I hvilken amerikansk delstat ligger Washington, D.C.?                                - Ingen. Washington, D.C. styres av kongressen og tilhører ingen av statene.
+Hva står D.C. for, i Washington, D.C.?                                               - District of Columbia
+Hva er den største byen i den amerikanske delstaten Washington?                      - Seattle
+
 Hva heter den største skogen i Brazil?                                               - Amazonas-regnskogen
 Hvilket land i Sør-Amerika har flest innbyggere?                                     - Brasil
 Hvilket land er nummer 5 i verden, både på areal og innbyggere?                      - Brasil
 Hvilken by er Brasils største, i antall innbyggere?                                  - São Paulo
-Hva heter landene i Nord-Amerika?                                                    - Canada og USA
 Hva heter landene i Mellom-Amerika?                                                  - Mexico, Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panama, Cuba, Haiti, Den Dominikanske Republikk
 Hva er det høyeste fjellet i Sør-Amerika?                                            - Aconcagua, Argentina (Andes-fjellene)
-Hva er det høyeste fjellet i USA?                                                    - Denali (Alaska)
+
+Hvor høy er Galdhøpiggen, Norges høyeste fjell?                                      - 2 469m
+Hva heter Norges nasjonalfjell?                                                      - Stetinden (I Tysfjord kommune, Nordland fylke)

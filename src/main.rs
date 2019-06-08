@@ -96,7 +96,7 @@ struct QuizData {
 }
 
 impl Quiz {
-    fn read_file(path: &std::path::Path) -> Result<Quiz, Box<Error>> {
+    fn read_file(path: &std::path::Path) -> Result<Quiz, Box<dyn Error>> {
         let mut quiz: Quiz = Quiz { questions: vec![] };
         let file = File::open(path)?;
         for line in BufReader::new(file).lines() {
@@ -128,7 +128,7 @@ impl Quiz {
 }
 
 impl LocalizedQuizData {
-    fn read_dir(path: &std::path::Path) -> Result<LocalizedQuizData, Box<Error>> {
+    fn read_dir(path: &std::path::Path) -> Result<LocalizedQuizData, Box<dyn Error>> {
         let mut data: LocalizedQuizData = LocalizedQuizData {
             categories: HashMap::new(),
         };
@@ -176,7 +176,7 @@ impl QuizData {
     }
 }
 
-fn init_quiz(path: &str) -> Result<QuizData, Box<Error>> {
+fn init_quiz(path: &str) -> Result<QuizData, Box<dyn Error>> {
     let mut q: QuizData = QuizData {
         languages: HashMap::new(),
     };

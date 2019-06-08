@@ -330,7 +330,7 @@ fn seed_host(seed: String, state: State<QuizData>, host: HostHeader) -> Template
 }
 
 fn main() {
-    let state: QuizData = init_quiz("2018").unwrap();
+    let state: QuizData = init_quiz("quiz").unwrap();
     rocket::ignite()
         .manage(state)
         .mount(

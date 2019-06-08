@@ -23,3 +23,6 @@ What country is the fifth biggest in the world (both by population and area)?   
 What is the most populous city in Brazil?                                               - São Paulo
 What are the names of the countries in Central America?                                 - Mexico, Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panama, Cuba, Haiti, The Dominican Republic
 What is the tallest mountain in South America?                                          - Aconcagua, Argentina (Andes-fjellene)
+
+What is the biggest cathedral in London called?                                         - St Paul's Cathedral
+What is the biggest church in the world?                                                - St. Peter's Basilica in Vatican City

@@ -1,35 +1,37 @@
 #![feature(proc_macro_hygiene, decl_macro, type_alias_enum_variants)]
 
-#[macro_use] extern crate rocket;
-#[macro_use] extern crate serde_derive;
-extern crate serde_json;
-extern crate rocket_contrib;
-extern crate rand;
+#[macro_use]
+extern crate rocket;
+#[macro_use]
+extern crate serde_derive;
 extern crate chrono;
 extern crate crypto;
+extern crate rand;
+extern crate rocket_contrib;
+extern crate serde_json;
 
 use std::collections::HashMap;
-use std::iter::FromIterator;
 use std::error::Error;
 use std::fs::{self, File};
-use std::io::{BufReader, BufRead};
+use std::io::{BufRead, BufReader};
+use std::iter::FromIterator;
 
-use rocket::{State, Request};
 use rocket::request::{FromRequest, Outcome};
 use rocket::response::Redirect;
+use rocket::{Request, State};
 use rocket_contrib::templates::Template;
 
 use self::crypto::digest::Digest;
 use self::crypto::sha2::Sha256;
-use rand::Rng;
 use chrono::{DateTime, Utc};
+use rand::Rng;
 
 fn randint(seed: &str) -> usize {
     let mut hasher = Sha256::new();
     hasher.input_str(seed);
     let mut bytes: [u8; 32] = [0; 32];
     hasher.result(&mut bytes);
-    let mut result : usize = 0;
+    let mut result: usize = 0;
     for i in 0..8 {
         result = result << 8;
         result += bytes[i] as usize;
@@ -46,8 +48,7 @@ fn randint_range(seed: &str, min: usize, max: usize) -> usize {
     return r;
 }
 
-fn shuffle<T>(seed: &str, elements: &mut Vec<T>)
-{
+fn shuffle<T>(seed: &str, elements: &mut Vec<T>) {
     let len = elements.len();
     if len <= 1 {
         return;
@@ -56,8 +57,11 @@ fn shuffle<T>(seed: &str, elements: &mut Vec<T>)
     for i in 0..20 {
         let seed_a = format!("{}_{}_a", seed, i);
         let seed_b = format!("{}_{}_b", seed, i);
-        let (a, b) = (randint_range(&seed_a, 0, max), randint_range(&seed_b, 0, max));
-        elements.swap(a,b);
+        let (a, b) = (
+            randint_range(&seed_a, 0, max),
+            randint_range(&seed_b, 0, max),
+        );
+        elements.swap(a, b);
     }
 }
 
@@ -93,15 +97,18 @@ struct QuizData {
 
 impl Quiz {
     fn read_file(path: &std::path::Path) -> Result<Quiz, Box<Error>> {
-        let mut quiz : Quiz = Quiz { questions : vec![] };
+        let mut quiz: Quiz = Quiz { questions: vec![] };
         let file = File::open(path)?;
         for line in BufReader::new(file).lines() {
-            let line : String = String::from(line?);
+            let line: String = String::from(line?);
             let v: Vec<&str> = line.split("  - ").collect();
             if v.len() == 2 {
                 let q = String::from(v[0].trim());
                 let a = String::from(v[1].trim());
-                let question = Question {question: q, answer: a};
+                let question = Question {
+                    question: q,
+                    answer: a,
+                };
                 quiz.questions.push(question);
             } else if line.trim() != "" {
                 println!("Skipping bad line: {}", line);
@@ -110,7 +117,7 @@ impl Quiz {
         return Ok(quiz);
     }
 
-    fn contains(& self, question: &Question) -> bool {
+    fn contains(&self, question: &Question) -> bool {
         for q in &self.questions {
             if q.question == question.question {
                 return true;
@@ -122,27 +129,28 @@ impl Quiz {
 
 impl LocalizedQuizData {
     fn read_dir(path: &std::path::Path) -> Result<LocalizedQuizData, Box<Error>> {
-        let mut data : LocalizedQuizData = LocalizedQuizData { categories : HashMap::new() };
+        let mut data: LocalizedQuizData = LocalizedQuizData {
+            categories: HashMap::new(),
+        };
         for entry in fs::read_dir(path)? {
             match entry {
                 Ok(e) => {
                     let category_path = e.path();
                     match Quiz::read_file(&category_path) {
                         Ok(q) => {
-                            let category = String::from(category_path.file_name().unwrap().to_str().unwrap());
+                            let category =
+                                String::from(category_path.file_name().unwrap().to_str().unwrap());
                             data.categories.insert(category, q);
                         }
                         Err(_) => {
                             println!("Error while reading quiz {:?}", path);
                         }
                     }
-
                 }
                 Err(_) => {
                     println!("An error occured while reading {:?}", path);
                 }
             }
-
         }
         return Ok(data);
     }
@@ -150,9 +158,11 @@ impl LocalizedQuizData {
 
 impl QuizData {
     fn add_language(&mut self, path: &std::path::Path) {
-        let value = match LocalizedQuizData::read_dir(path){
-            Ok(q) => {q}
-            Err(_) => {return;}
+        let value = match LocalizedQuizData::read_dir(path) {
+            Ok(q) => q,
+            Err(_) => {
+                return;
+            }
         };
         let path = path.file_name().unwrap().to_str();
         let key = match path {
@@ -181,7 +191,7 @@ fn init_quiz(path: &str) -> Result<QuizData, Box<Error>> {
 }
 
 fn quiz(seed: &str, data: &QuizData, language: &str) -> Quiz {
-    let mut quiz = Quiz {questions: vec![]};
+    let mut quiz = Quiz { questions: vec![] };
 
     let categories = &data.languages[language].categories;
     let mut keys: Vec<&String> = Vec::from_iter(categories.keys());
@@ -201,7 +211,7 @@ fn quiz(seed: &str, data: &QuizData, language: &str) -> Quiz {
             let max = length - 1;
             let index = randint_range(&tmp_seed, 0, max);
             let question = &category.questions[index];
-            if ! quiz.contains(question) {
+            if !quiz.contains(question) {
                 quiz.questions.push(question.clone());
             }
         }
@@ -211,7 +221,7 @@ fn quiz(seed: &str, data: &QuizData, language: &str) -> Quiz {
 }
 
 #[derive(Serialize)]
-struct TemplateContext <'a> {
+struct TemplateContext<'a> {
     title: &'static str,
     solution: &'static str,
     more: &'static str,
@@ -227,11 +237,11 @@ fn templated_quiz(
     title: &'static str,
     solution: &'static str,
     more: &'static str,
-    root: &'static str
+    root: &'static str,
 ) -> Template {
     let date = match seed.contains("-") {
-        true => {seed}
-        false => {format!("#{}", seed)}
+        true => seed,
+        false => format!("#{}", seed),
     };
     let mut questions: Vec<&str> = vec![];
     let mut answers: Vec<&str> = vec![];
@@ -323,16 +333,20 @@ fn main() {
     let state: QuizData = init_quiz("2018").unwrap();
     rocket::ignite()
         .manage(state)
-        .mount("/", routes![
-            root,
-            random,
-            seed_host,
-            norwegian,
-            norwegian_seed,
-            norwegian_random,
-            english,
-            english_seed,
-            english_random])
+        .mount(
+            "/",
+            routes![
+                root,
+                random,
+                seed_host,
+                norwegian,
+                norwegian_seed,
+                norwegian_random,
+                english,
+                english_seed,
+                english_random
+            ],
+        )
         .attach(Template::fairing())
         .launch();
 }

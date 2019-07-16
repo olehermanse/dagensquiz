@@ -95,13 +95,27 @@ struct QuizData {
     languages: HashMap<String, LocalizedQuizData>,
 }
 
+fn split_line(line: &str) -> Vec<String> {
+    let line: String = String::from(line);
+    return line.split("  - ").map(String::from).collect();
+}
+
+fn read_lines(path: &std::path::Path) -> Result<Vec<String>, Box<dyn Error>> {
+    let mut v: Vec<String> = vec![];
+    let file = File::open(path)?;
+    for line in BufReader::new(file).lines() {
+        v.push(line?);
+    }
+    return Ok(v);
+}
+
 impl Quiz {
     fn read_file(path: &std::path::Path) -> Result<Quiz, Box<dyn Error>> {
         let mut quiz: Quiz = Quiz { questions: vec![] };
-        let file = File::open(path)?;
-        for line in BufReader::new(file).lines() {
-            let line: String = String::from(line?);
-            let v: Vec<&str> = line.split("  - ").collect();
+
+        let v = read_lines(path)?;
+        for line in v.into_iter() {
+            let v = split_line(&line);
             if v.len() == 2 {
                 let q = String::from(v[0].trim());
                 let a = String::from(v[1].trim());

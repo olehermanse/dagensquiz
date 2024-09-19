@@ -1,4 +1,4 @@
-FROM rust:1.34
+FROM rust:1.50
 WORKDIR /dagensquiz
 COPY . .
 ENV ROCKET_ENV prod

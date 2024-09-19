@@ -92,7 +92,7 @@ fn get_date() -> String {
 
 fn random_quiz_number() -> usize {
     let mut rng = rand::thread_rng();
-    return rng.gen_range(100, 999);
+    return rng.gen_range(100..=999);
 }
 
 #[get("/")]

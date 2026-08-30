@@ -43,6 +43,8 @@ struct TemplateContext<'a> {
     url: &'static str,
     questions: Vec<&'a str>,
     answers: Vec<&'a str>,
+    madeby: &'static str,
+    withoutai: &'static str,
 }
 
 fn templated_quiz(
@@ -51,6 +53,8 @@ fn templated_quiz(
     title: &'static str,
     solution: &'static str,
     more: &'static str,
+    madeby: &'static str,
+    withoutai: &'static str,
     root: &'static str,
 ) -> Template {
     let date = match seed.contains("-") {
@@ -67,6 +71,8 @@ fn templated_quiz(
         title: title,
         solution: solution,
         more: more,
+        madeby: madeby,
+        withoutai: withoutai,
         date: date,
         url: root,
         questions: questions,
@@ -77,12 +83,12 @@ fn templated_quiz(
 
 fn norwegian_template(seed: String, state: State<QuizData>, root: &'static str) -> Template {
     let quiz = quiz(&seed, &state, "no");
-    return templated_quiz(quiz, seed, "Dagens quiz", "Fasit", "Mer quiz...", root);
+    return templated_quiz(quiz, seed, "Dagens quiz", "Fasit", "Mer quiz...", "Laget av", "uten AI", root);
 }
 
 fn english_template(seed: String, state: State<QuizData>, root: &'static str) -> Template {
     let quiz = quiz(&seed, &state, "en");
-    return templated_quiz(quiz, seed, "Daily Quiz", "Solution", "More quiz...", root);
+    return templated_quiz(quiz, seed, "Daily Quiz", "Solution", "More quiz...", "Made by", "without AI", root);
 }
 
 fn get_date() -> String {

@@ -3,7 +3,7 @@
 Podman:
 
 ```bash
-podman build --tag dagensquiz . && podman run -it -p 3000:3000 --name dagensquiz --rm dagensquiz
+podman build --tag dagensquiz . && podman run -it -p 3000:3000 --replace --name dagensquiz --rm dagensquiz
 ```
 
 Docker:
